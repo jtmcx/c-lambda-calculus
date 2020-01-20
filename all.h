@@ -42,7 +42,7 @@ enum {
 void*   xmalloc(size_t);
 char*   xstrdup(char *);
 
-/* main.c */
+/* term.c */
 Term*   mkvar(int var);
 Term*   mklam(Term *lam);
 Term*   mkapp(Term *lhs, Term *rhs);
