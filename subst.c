@@ -1,5 +1,26 @@
 #include "all.h"
 
+static Term* substvar(Term *t, int j, Term *s);
+static Term* substlam(Term *t, int j, Term *s);
+static Term* substapp(Term *t, int j, Term *s);
+
+Term*
+subst(Term *t, int j, Term *s)
+{
+	assert(t);
+	assert(s);
+	switch (t->tag) {
+	case TERM_VAR:
+		return substvar(t, j, s);
+	case TERM_LAM:
+		return substlam(t, j, s);
+	case TERM_APP:
+		return substapp(t, j, s);
+	}
+	assert(!"unreachable");
+	return NULL;
+}
+
 static Term*
 substvar(Term *t, int j, Term *s)
 {
@@ -27,21 +48,4 @@ substapp(Term *t, int j, Term *s)
 	lhs = subst(t->u.app.lhs, j, s);
 	rhs = subst(t->u.app.rhs, j, s);
 	return mkapp(lhs, rhs);
-}
-
-Term*
-subst(Term *t, int j, Term *s)
-{
-	assert(t);
-	assert(s);
-	switch (t->tag) {
-	case TERM_VAR:
-		return substvar(t, j, s);
-	case TERM_LAM:
-		return substlam(t, j, s);
-	case TERM_APP:
-		return substapp(t, j, s);
-	}
-	assert(!"unreachable");
-	return NULL;
 }
