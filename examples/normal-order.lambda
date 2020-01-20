@@ -1,1 +1,12 @@
+# This is an example that shows one consequence of normal-order reduction.
+#
+# In normal-order reduction, terms are reduced to the "left" and from the
+# "top". More can be read about what this means here:
+#     https://en.wikipedia.org/wiki/Beta_normal_form
+#
+# This expression will reduce to (\a. a). If we were to use another
+# reduction strategy, such as applicative-order reduction, we might end
+# up reducing the omega combinator on the right first, thereby entering
+# an infinite loop.
+
 (\a. (\x. a)((\x. x x)(\x. x x)))

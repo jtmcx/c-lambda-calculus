@@ -1,5 +1,5 @@
 # This example tests the "successor" function. The expected output
-# should be 3, i.e. \a.\b. a (a (a (b)))
+# should be 3, i.e. \a. \b. a (a (a b))
 
 (\zero. \succ.
   succ (succ (succ zero)))
