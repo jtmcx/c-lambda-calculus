@@ -77,7 +77,7 @@ dumpapp(FILE *f, Term *t, int depth)
 	assert(t);
 	assert(t->tag == TERM_APP);
 
-	/* Lambda's need to be parenthesized if they are on 
+	/* Lambda's need to be parenthesized if they are on
 	the left hand side of an application. */
 	if (t->u.app.lhs->tag == TERM_LAM) {
 		parens(f, t->u.app.lhs, depth);
@@ -88,7 +88,7 @@ dumpapp(FILE *f, Term *t, int depth)
 	fprintf(f, " ");
 
 	/* Application is left associative, so if there is an
-	application on the right side, we need to parenthesize. 
+	application on the right side, we need to parenthesize.
 	Lambda's are also easier to read if parenthesized. */
 	if (t->u.app.rhs->tag != TERM_VAR) {
 		parens(f, t->u.app.rhs, depth);
