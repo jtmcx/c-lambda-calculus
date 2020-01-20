@@ -1,0 +1,4 @@
+# An example of the omega combinator -- an expression that reduces to
+# itself. This program will never terminate.
+
+(\x. x x) (\x. x x)
