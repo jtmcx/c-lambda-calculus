@@ -79,8 +79,8 @@ Again:
 			c = next(x);
 		goto Again;
 	}
-	/* identifiers: [a-zA-Z][a-zA-Z0-9'_]* */
-	if (isalpha(c)) {
+	/* identifiers: [a-zA-Z_][a-zA-Z0-9'_]* */
+	if (isalpha(c) || c == '_') {
 		while (isalpha(c) || isdigit(c) || strchr("'_", c))
 			c = next(x);
 		undo(x, c);

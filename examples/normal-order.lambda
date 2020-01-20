@@ -9,4 +9,4 @@
 # up reducing the omega combinator on the right first, thereby entering
 # an infinite loop.
 
-(\a. (\x. a) ((\x. x x) (\x. x x)))
+(\a. (\_. a) ((\x. x x) (\x. x x)))
