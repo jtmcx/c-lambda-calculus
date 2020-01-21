@@ -1,0 +1,13 @@
+# A demonstration of pairs.
+
+(\pair. \first. \second.
+  (second (pair (\x. \y. x) (\x. \y. y))))
+
+# pair
+(\x. \y. \f. f x y)
+
+# first
+(\p. p (\x. \y. x))
+
+# second
+(\p. p (\x. \y. y))

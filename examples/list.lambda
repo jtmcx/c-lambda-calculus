@@ -1,0 +1,29 @@
+# A demonstration of lists.
+
+(\cons. \head. \tail. \nil. \succ.
+    \_0. \_1. \_2. \_3.
+
+  # This will return "1" (\s. \z. s z)
+  (head (tail (cons _0 (cons _1 (cons _2 nil)))))
+)
+
+# cons 
+(\x. \y. \f. f x y)
+
+# head 
+(\p. p (\x. \y. x))
+
+# tail
+(\p. p (\x. \y. y))
+
+# nil
+(\x. (\x. \y. x))
+
+# succ
+(\w. \y. \x. y (w y x))
+
+# _0 through _3
+(\s. \z. z)
+(\s. \z. s z)
+(\s. \z. s (s z))
+(\s. \z. s (s (s z)))
