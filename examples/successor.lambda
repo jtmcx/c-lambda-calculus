@@ -5,7 +5,7 @@
   succ (succ (succ zero)))
 
 # zero
-(\s . \z . z)
+(\s. \z. z)
 
 # succ
-(\w. \y. \x . y (w y x))
+(\w. \y. \x. y (w y x))
