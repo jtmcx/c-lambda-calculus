@@ -60,9 +60,10 @@ Lexer*  lexinit(FILE *);
 int     lex(Lexer *);
 char*   lextext(Lexer *);
 void    lexundo(Lexer *);
+int     lexline(Lexer *);
 
 /* parse.c */
-Term*   parse(FILE *);
+Term*   parse(char *filename, FILE *);
 
 /* dump.c */
 void    dump(FILE *, Term *);

@@ -172,7 +172,7 @@ parseterm(Parser *p)
 }
 
 Term*
-parse(FILE *f)
+parse(char *filename, FILE *f)
 {
 	Term *t;
 	Parser p;
@@ -186,7 +186,8 @@ parse(FILE *f)
 		is checked up front. Instead, we call longjmp to return
 		to this point if an error occurred. */
 
-		fprintf(stderr, "parse error: %s\n", p.errmsg);
+		fprintf(stderr, "%s:%d: parse error: %s\n",
+				filename, lexline(p.lex), p.errmsg);
 		return NULL;
 	}
 

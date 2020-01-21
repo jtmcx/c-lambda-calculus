@@ -6,6 +6,7 @@ struct Lexer {
 	FILE *f;        /* Input source. */
 	char *text;     /* Malloc'd buffer of lexeme text. */
 	char *cur;      /* Pointer to last char in 'text'. */
+	int   line;     /* Current line in the file. */
 	int   undid;    /* Set to 1 after lexundo, 0 otherwise, */
 	int   tok;      /* Last token lexed (used for lexundo). */
 };
@@ -49,6 +50,7 @@ lexinit(FILE *f)
 	x->text = xmalloc(MAX_TOKEN_SIZE);
 	x->undid = 0;
 	x->f = f;
+	x->line = 1;
 	reset(x);
 	return x;
 }
@@ -60,8 +62,6 @@ dolex(Lexer *x)
 Again:
 	reset(x);
 	c = next(x);
-	if (isspace(c))
-		goto Again;
 	switch (c) {
 	case EOF:
 		return TOK_EOF;
@@ -73,10 +73,17 @@ Again:
 		return TOK_LPAREN;
 	case ')':
 		return TOK_RPAREN;
+	case ' ':
+	case '\t':
+		goto Again;
+	case '\n':
+		x->line++;
+		goto Again;
 	case '#':
 		/* comments: #.*\n */
 		while (c != '\n' && c != EOF)
 			c = next(x);
+		undo(x, c);  /* We want to handle the '\n' */
 		goto Again;
 	}
 	/* identifiers: [a-zA-Z_][a-zA-Z0-9'_]* */
@@ -115,3 +122,8 @@ lextext(Lexer *x)
 	return x->text;
 }
 
+int
+lexline(Lexer *x)
+{
+	return x->line;
+}
