@@ -45,24 +45,24 @@ Term*   mklam(Term *lam);
 Term*   mkapp(Term *lhs, Term *rhs);
 
 /* shift.c */
-Term*   shift(Term*, int cutoff, int amt);
-Term*   shiftdown(Term*);
-Term*   shiftup(Term*);
+Term*   shift(Term *, int cutoff, int amt);
+Term*   shiftdown(Term *);
+Term*   shiftup(Term *);
 
 /* subst.c */
-Term*   subst(Term *t, int j, Term *s);
+Term*   subst(Term *, int j, Term *s);
 
 /* reduce.c */
-Term*   reduce(Term *t);
+Term*   reduce(Term *);
 
 /* lex.c */
 Lexer*  lexinit(FILE *);
-int     lex(Lexer*);
-char*   lextext(Lexer*);
-void    lexundo(Lexer *x);
+int     lex(Lexer *);
+char*   lextext(Lexer *);
+void    lexundo(Lexer *);
 
 /* parse.c */
 Term*   parse(FILE *);
 
 /* dump.c */
-void    dump(FILE *f, Term *t);
+void    dump(FILE *, Term *);
