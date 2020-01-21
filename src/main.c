@@ -3,10 +3,11 @@
 int
 main(int argc, char *argv[])
 {
-	Term *t = parse(stdin);
-	if (t == NULL)
+	Term *t;
+	if ((t = parse(stdin)) == NULL)
 		return 1;
-	dump(stdout, reduce(t));
+	t = reduce(t);
+	dump(stdout, t);
 	fprintf(stdout, "\n");
 	return 0;
 }
