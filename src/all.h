@@ -1,6 +1,3 @@
-#ifndef INCLUDED_LAMBDA
-#define INCLUDED_LAMBDA
-
 #include <assert.h>
 #include <ctype.h>
 #include <setjmp.h>
@@ -69,5 +66,3 @@ Term*   parse(FILE *);
 
 /* dump.c */
 void    dump(FILE *f, Term *t);
-
-#endif
