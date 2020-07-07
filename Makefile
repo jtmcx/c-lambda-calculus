@@ -13,10 +13,13 @@ src/term.o \
 src/util.o \
 
 
-$(TARG) : $(OFILES)
+$(TARG): $(OFILES)
 	$(CC) -o $@ $(LDFLAGS) $(OFILES)
 
-$(OFILES) : src/all.h
+$(OFILES): src/all.h
+
+.c.o:
+	$(CC) -c -o $@ $(CFLAGS) $<
 
 clean:
 	rm -f $(TARG) $(OFILES)
